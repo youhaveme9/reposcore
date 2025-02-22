@@ -1,4 +1,3 @@
-import os
 import subprocess
 import json
 from rich.console import Console
@@ -34,10 +33,10 @@ def checkSecurityDependency(path):
     dependencyReport = open('./temp/snyk-report.json', 'w')
     try:
         with console.status("Checking dependencies...", spinner="dots2"):
-                result = subprocess.run(cmd, cwd=path, check=True, stdout=dependencyReport, text=True)  
+                subprocess.run(cmd, cwd=path, check=True, stdout=dependencyReport, text=True)  
         utils.logInfo('Dependency check completed')
-    except Exception as e:
-        utils.logError(f"Vulnerabilities Found")
+    except Exception:
+        utils.logError("Vulnerabilities Found")
 
     with open('./temp/snyk-report.json', 'r') as f:
         report = json.loads(f.read())

@@ -11,15 +11,13 @@ def checkLeaks(path):
     score = 20
     secrets = []
     subprocess.run(["chmod", "o+w", "./temp"], check=True)
-    secretReport = open('./temp/gitleaks-report.json', 'w')
-    cmd = ["gitleaks", "dir", path]
     try:
         with console.status("Searching for leaked secrets...", spinner="dots2"):
                 os.system(f"gitleaks dir {path} --report-path ./temp/gitleaks-report.json &>/dev/null") 
                 
         utils.logInfo('Secrets scanning complete')
-    except Exception as e:
-        utils.logError(f"Secrets Found")
+    except Exception:
+        utils.logError("Secrets Found")
         print()
 
     with open('./temp/gitleaks-report.json', 'r') as f:

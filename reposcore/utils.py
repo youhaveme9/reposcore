@@ -13,9 +13,9 @@ class Utils:
     def heading(self):
         f = Figlet(font='slant')
         print(f.renderText('RepoScore'))
-        print(f"[bold green]v1.0.0[/bold green]")
-        print(f"[bold green]------[/bold green]")
-        print(f"[bold green]Get a security score for git repos[/bold green]")
+        print("[bold green]v0.1.0[/bold green]")
+        print("[bold green]------[/bold green]")
+        print("[bold green]Get a security score for git repos[/bold green]")
         print("\n\n")
 
     def logInfo(self, message: str):
@@ -58,7 +58,7 @@ class Utils:
             return
         self.validateUrl(url)
         try:
-            with console.status("Cloning repo...", spinner="dots2") as status:
+            with console.status("Cloning repo...", spinner="dots2"):
                 subprocess.run(['git', 'clone', url, path], check=True)
             self.logInfo('Repo cloned successfully')
         except subprocess.CalledProcessError:

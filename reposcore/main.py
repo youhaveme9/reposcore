@@ -1,6 +1,4 @@
 import os
-import sys
-import time
 from reposcore.utils import Utils
 from reposcore.scanners.dependency import checkSecurityDependency, checkOutdatedDependency
 from reposcore.scanners.secretsScanner import checkLeaks

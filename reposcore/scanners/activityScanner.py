@@ -1,7 +1,6 @@
 import re
 import requests
 from reposcore.utils import Utils
-from rich.console import Console
 
 utils = Utils()
 def getActivityScore(url: str) -> int:
@@ -24,11 +23,10 @@ def getActivityScore(url: str) -> int:
 
         stars = repo_data.get("stargazers_count", 0)
         forks = repo_data.get("forks_count", 0)
-        watchers = repo_data.get("subscribers_count", 0)
         open_issues = len(issues_data) if isinstance(issues_data, list) else 0
         open_pulls = len(pulls_data) if isinstance(pulls_data, list) else 0
         last_updated = repo_data.get("pushed_at", "Unknown")
-    except Exception as e:
+    except Exception:
         utils.logError("Error fetching data. Please try again.")
         return
     
